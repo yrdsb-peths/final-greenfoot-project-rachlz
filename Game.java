@@ -16,7 +16,7 @@ public class Game extends World
     private GreenfootSound pondSound = new GreenfootSound("pond.mp3"); 
     public int score = 0; 
     Label scoreLabel;
-    
+    int level = 1; 
     public Game()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -42,11 +42,16 @@ public class Game extends World
     public void increaseScore()
     {
         score++; 
-        scoreLabel.setValue(score); 
+        scoreLabel.setValue(score);
+        if (score % 5 == 0)
+        {
+            level += 1; 
+        }
     }
     public void createBug()
     {
         Bug bug = new Bug(); 
+        bug.setSpeed(level); 
         int x = Greenfoot.getRandomNumber(540);
         int y = 0;
         addObject(bug, x, y); 
